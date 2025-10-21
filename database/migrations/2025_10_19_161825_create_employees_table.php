@@ -25,6 +25,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('leave_penalty');
             $table->tinyInteger('status')->comment('1=Trainee , 2=Onroll ,3=Relieved');
             $table->integer('allow_overtime');
+            $table->enum('overtime',['morning overtime','evening overtime','both overtime','none']);
             $table->integer('flexible_breack_allow');
             $table->integer('miniman_overtime_require');
             $table->timestamps();
