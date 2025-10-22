@@ -12,7 +12,6 @@ class UserController extends Controller
         $this->userservice=$userservice;
     }
     public function index(){
-      $data= $this->userservice->userlist();
-      echo $data;
+      return view('admin.user.user');
     }
 }
