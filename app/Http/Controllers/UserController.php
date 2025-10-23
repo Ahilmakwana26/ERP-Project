@@ -14,4 +14,14 @@ class UserController extends Controller
     public function index(){
       return view('admin.user.user');
     }
+    public function create(){
+      return view('admin.user.create');
+    }
+    public function store(Request $request){
+
+     $data= $this->userservice->store($request->all());
+    if($data['success']==true){
+      dd("user created");
+    }
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Services\user;
 
 use App\Repository\Contracts\UserRepository;
 use App\Repository\Entities\User;
+use Illuminate\Support\Facades\Validator;
 
 class userservice
 {
@@ -13,16 +14,23 @@ class userservice
     }
 
 
-    public function createUser(array $userData)
+    public function store($request)
     {
-      
-        // $user = User::create([
-        //     'name' => $userData['name'],
-        //     'email' => $userData['email'],
-        //     'password' => bcrypt($userData['password']), // Hash the password
-        // ]);
+      $validated=Validator::make($request,[
+        'name'=>'required',
+        'email'=>'required',
+        'password'=>'required',
+        'confirm_password'=>'required|confirmed',
+        'authorize_type'=>'required|in:otp,key,both,none',
+        'mobile_no'=>'required',
+        'office_no'=>'required',
+        'status'=>'reuired|in:Active,Inactive',
+        'role_name'=>'required'
+      ]);
+        if($validated->fails()){
+            return redirect()->back()->withErrors($validated)->withInput();
+        }
 
-        // return $user;
     }
 
     public function updateUser(User $user, array $userData)
