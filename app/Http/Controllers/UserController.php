@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepository;
 use App\Services\user\userservice;
+
 class UserController extends Controller
 {
     protected $userservice;
@@ -19,9 +20,11 @@ class UserController extends Controller
     }
     public function store(Request $request){
 
-     $data= $this->userservice->store($request->all());
-    if($data['success']==true){
-      dd("user created");
+    $user= $this->userservice->store($request->all());
+    if (isset($user['success']) && $user['success'] === false) {
+      return redirect()->back()->withErrors($user['message'])->withInput();
     }
-    }
+    session()->flash('message', 'User created successfully!');
+    return redirect()->back();
+}
 }

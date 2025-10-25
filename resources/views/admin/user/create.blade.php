@@ -2,6 +2,7 @@
 @section('content')
 
     <div class="user-card">
+           @include('partials.flash')
         <div class="card-header">
             <h2 class="btn card-title">Create <span>| <a href="#">Home</a></span></h2>
            <!-- Header -->
@@ -26,12 +27,12 @@
             <div class="second">
                     <div class="form-group">
                     <label for="">Name</label>
-                    <input type="text" name="name" id="name"  required>
+                    <input type="text" name="name" id="name" value="{{old('name')}}" required>
                    </div>
         
                    <div class="form-group">
                     <label for="">Email</label>
-                    <input type="email" name="email" required>
+                    <input type="email" name="email" value="{{old('email')}}" required>
                    </div>
         
                    <div class="form-group">
@@ -43,7 +44,7 @@
             <div class="third">
                 <div class="form-group">
                     <label for="">Conform Password</label>
-                    <input type="password" name="confirm_password" required>
+                    <input type="password" name="password_confirmation" required>
                    </div>
        
                    <div class="form-group">
@@ -61,12 +62,12 @@
             <div class="contact-status-group">
                 <div class="form-group">
                     <label for="mobile_no">Mobile No</label>
-                    <input type="number" id="mobile_no" name="mobile_no" required>
+                    <input type="number" value="{{old('mobile_no')}}" id="mobile_no" name="mobile_no" required>
                 </div>
 
                 <div class="form-group">
                     <label for="office_no">Office No</label>
-                    <input type="number" id="office_no" name="office_no" required>
+                    <input type="number" id="office_no" name="office_no" value="{{old('office_no')}}"  required>
                 </div>
 
                 <div class="form-group">
