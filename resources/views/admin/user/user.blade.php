@@ -6,7 +6,8 @@
            <!-- 2. Main Content Area -->
            <!--every content write here -->
                 <div class="user-card">
-                    
+                    @include('partials.flash')
+
                     <!-- Title and Controls -->
                     <div class="card-header">
                         <h2 class="btn card-title">User <span>| Home</span></h2>
@@ -43,188 +44,56 @@
                             <!-- Table Header -->
                             <thead>
                                 <tr>
-                                    <th>Id <span>^</span></th>
-                                    <th>Name <span>^</span></th>
-                                    <th>Email <span>^</span></th>
-                                    <th>Role <span>^</span></th>
-                                    <th>Type <span>^</span></th>
-                                    <th>Status <span>^</span></th>
-                                    <th>Action <span>^</span></th>
+                                    <th>Id </th>
+                                    <th>Name </th>
+                                    <th>Email </th>
+                                    <th>Role </th>
+                                    <th>Mobile </th>
+                                    <th>Status </th>
+                                    <th>Created_at </th>
+                                    <th>Action </th>
                                 </tr>
                             </thead>
                             <!-- Table Body -->
                             <tbody>
-                                
+                                <?php $i=1 ?>
                                 <!-- Row 1 -->
+                                @foreach ($users as $user)
+                                    
+                               
                                 <tr>
                                     <td class="td-product-name">
-                                       <span>01</span>
+                                       <span>0{{$i++}}</span>
                                     </td>
-                                    <td class="td-id">#KP267400</td>
-                                    <td class="td-price">$90.50</td>
-                                    <td class="td-stock">350 pcs</td>
-                                    <td class="td-type">Dessert</td>
-                                    <td>
-                                        <span class="badge badge-pending">Pending</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Cherry Delight')">...</button>
-                                    </td>
-                                </tr>
+                                    <td class="td-id">{{$user->name}}</td>
+                                    <td class="td-price">{{$user->email}}</td>
+                                    <td class="td-stock">{{$user->role}}</td>
+                                    <td class="td-stock">
+                                            @if($user->mobile_no)
+                                            {{$user->mobile_no}} @else N/A 
+                                            @endif
+                                        </td>
 
-                                <!-- Row 2 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>02</span>
-                                    </td>
-                                    <td class="td-id">#TL651535</td>
-                                    <td class="td-price">$12.00</td>
-                                    <td class="td-stock">650 kg</td>
-                                    <td class="td-type">Fruits</td>
                                     <td>
-                                        <span class="badge badge-active">Active</span>
+                                        <span class="badge badge-pending">{{$user->status}}</span>
                                     </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Kiwi')">...</button>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Row 3 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>03</span>
-                                    </td>
-                                    <td class="td-id">#08651535</td>
-                                    <td class="td-price">$100.50</td>
-                                    <td class="td-stock">1200 pcs</td>
-                                    <td class="td-type">Ice Cream</td>
-                                    <td>
-                                        <span class="badge badge-inactive">Inactive</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Mango Magic')">...</button>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Row 4 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>04</span>
-                                    </td>
-                                    <td class="td-id">#ER851535</td>
-                                    <td class="td-price">$59.99</td>
-                                    <td class="td-stock">700 pcs</td>
-                                    <td class="td-type">Care</td>
-                                    <td>
-                                        <span class="badge badge-on-sale">On Sale</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Joy Care')">...</button>
-                                    </td>
-                                </tr>
+                                    <td class="td-type">  @if($user->office_no)
+                                        {{$user->office_no}} @else N/A 
+                                        @endif</td>
 
-                                <!-- Row 5 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>05</span>
-                                    </td>
-                                    <td class="td-id">#SD487441</td>
-                                    <td class="td-price">$150.90</td>
-                                    <td class="td-stock">100 lt</td>
-                                    <td class="td-type">Dessert</td>
-                                    <td>
-                                        <span class="badge badge-bouncing">Bouncing</span>
-                                    </td>
                                     <td class="td-action">
-                                        <button onclick="handleClick('Action for Blueberry Bliss')">...</button>
+                    
+                                        <button class="button-29 actionbtn" role="button">Action</button>
+ 
+                                        <div class="buttons active">
+                                            <button><a href="{{route('user.edit',$user->id)}}">Update</a></button>
+                                            <button class="userdeletebtn" data-user-id={{$user->id}}>Delete</button>
+                                        </div>
                                     </td>
                                 </tr>
-                                
-                                <!-- Row 6 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>06</span>
-                                    </td>
-                                    <td class="td-id">#TL449003</td>
-                                    <td class="td-price">$10.99</td>
-                                    <td class="td-stock">23 lt</td>
-                                    <td class="td-type">Juice</td>
-                                    <td>
-                                        <span class="badge badge-pending">Pending</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Watermelon')">...</button>
-                                    </td>
-                                </tr>
-
-                                <!-- Row 7 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>07</span>
-                                    </td>
-                                    <td class="td-id">#KP651535</td>
-                                    <td class="td-price">$130.00</td>
-                                    <td class="td-stock">3000 pcs</td>
-                                    <td class="td-type">Oil</td>
-                                    <td>
-                                        <span class="badge badge-active">Active</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Trilogy')">...</button>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Row 8 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>08</span>
-                                    </td>
-                                    <td class="td-id">#GB449003</td>
-                                    <td class="td-price">$40.70</td>
-                                    <td class="td-stock">400 pcs</td>
-                                    <td class="td-type">Cream</td>
-                                    <td>
-                                        <span class="badge badge-inactive">Inactive</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Dryskin')">...</button>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Row 9 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>09</span>
-                                    </td>
-                                    <td class="td-id">#SD449003</td>
-                                    <td class="td-price">$35.50</td>
-                                    <td class="td-stock">200 lt</td>
-                                    <td class="td-type">Oil</td>
-                                    <td>
-                                        <span class="badge badge-on-sale">On Sale</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Olive Oil')">...</button>
-                                    </td>
-                                </tr>
-
-                                <!-- Row 10 -->
-                                <tr>
-                                    <td class="td-product-name">
-                                        <span>10</span>
-                                    </td>
-                                    <td class="td-id">#ER558812</td>
-                                    <td class="td-price">$9.99</td>
-                                    <td class="td-stock">1200 pcs</td>
-                                    <td class="td-type">Flowers</td>
-                                    <td>
-                                        <span class="badge badge-bouncing">Bouncing</span>
-                                    </td>
-                                    <td class="td-action">
-                                        <button onclick="handleClick('Action for Citrus Brust')">...</button>
-                                    </td>
-                                </tr>
-                                
+                               
+                                @endforeach
+                            
                             </tbody>
                         </table>
                     </div>
@@ -253,6 +122,42 @@
                     </div>
 
                 </div>
-          
 
+                <script>
+                    let actionbtn=document.querySelectorAll('.actionbtn');
+                    actionbtn.forEach(btn => {
+                        btn.addEventListener("click",function(){
+                        let buttonsDiv = btn.parentElement.querySelector('.buttons');
+                       buttonsDiv.classList.toggle('active');
+
+                     });
+                    });
+                 
+
+                    $('.userdeletebtn').click(function(){
+                      let userId= $(this).data('user-id');
+                        //console.log($userdelete);
+                        let routeUrl = "{{ route('user.delete', ':id') }}";
+                        routeUrl = routeUrl.replace(':id', userId);
+                        console.log(routeUrl);
+                        $.ajax({
+                            url: routeUrl,
+                            type:'POST',
+                            data:{
+                                _token:"{{csrf_token()}}"
+                            },
+
+                            success:function(res){
+                                //alert(res.message);
+                                location.reload();
+                            },
+                            error:function(res){
+                               // alert(res.message);
+                            }
+                        })
+                        
+                    });
+                 
+               
+                </script>         
 @endsection

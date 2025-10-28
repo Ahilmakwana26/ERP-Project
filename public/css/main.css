@@ -290,7 +290,9 @@ body {
     gap: 12px; 
     font-size: 14px; 
 }
-
+.controls-group a{
+    text-decoration: none;
+}
 /* General Control Buttons (Filter, Export) */
 .control-btn {
     display: flex;

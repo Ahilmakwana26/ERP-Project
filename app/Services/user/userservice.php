@@ -27,10 +27,10 @@ class userservice
         'password' => 'required|confirmed',
         'password_confirmation' => 'required',
         'authorize_type' => 'required|in:otp,key,both,none',
-        'mobile_no' => 'required',
-        'office_no' => 'required',
+        'mobile_no' => 'required|numeric',
+        'office_no' => 'required|numeric',
         'status' => 'required|in:Active,Inactive',
-        'role_name' => 'required',
+        'role' => 'required',
       ]);
         if($validated->fails()){
             return [
@@ -50,9 +50,10 @@ class userservice
         if(isset($request['user_permission'])){
             $userPermission=implode(',',$request['user_permission']);
         }
+       
     $data=[
         'company_id'=>1,
-        'role'=>$request['role_name'],
+        'role'=>$request['role'],
         'name'=>$request['name'],
         'email'=>$request['email'],
         'password'=>Hash::make($request['password']),
@@ -62,7 +63,7 @@ class userservice
         'status'=>$request['status'],
         'user_permission'=>$userPermission,
     ];
-    
+   
     $user = $this->userrepo->create($data);
     return [
         'success'=>true,
@@ -78,17 +79,66 @@ class userservice
     }
     }
 
-    public function updateUser(User $user, array $userData)
+    public function update($request,$id)
     {
+    
+        try{
+            $user=user::findOrFail($id);
 
-        // $user->update([
-        //     'name' => $userData['name'] ?? $user->name,
-        //     'email' => $userData['email'] ?? $user->email,
-        //     // Only update password if provided
-        //     'password' => isset($userData['password']) ? bcrypt($userData['password']) : $user->password,
-        // ]);
+            $validated=Validator::make($request,[
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'confirmed',
+                'authorize_type' => 'required|in:otp,key,both,none',
+                'mobile_no' => 'required|numeric',
+                'office_no' => 'required|numeric',
+                'status' => 'required|in:Active,Inactive',
+                'role' => 'required',
+            ]);
 
-        // return $user;
+        if($validated->fails()){
+            return [
+                'success'=>false,
+                'message'=>$validated->errors(),
+            ];
+        }
+        if(isset($request['user_permission'])){
+            $request['user_permission']=implode(',',$request['user_permission']);
+        }
+        if(isset($request['password']) && !empty($request['password'])){
+            $request['password']=Hash::make($request['password']);
+        }else{
+            unset($request['password']);
+        }
+        $user=$user->update($request);
+        return [
+            'success'=>true,
+            'message'=>'user update successfully',
+            'data'=>$user,
+        ];
+        }catch(\Exception $e){
+            return [
+                'success'=>false,
+                'message'=>$e->getMessage(),
+            ];
+        }
+    }
+    public function delete($id){
+       try{
+        $user=user::find($id);
+        if ($user) {
+            $user->delete();
+            return [
+                'success'=>true,
+                'message' => 'User deleted successfully!',
+            ];
+        } 
+       }catch(\Exception $e){
+        return [
+            'success'=>false,
+            'message'=>$e->getMessage(),
+        ];
+       }
     }
 }
 ?>
