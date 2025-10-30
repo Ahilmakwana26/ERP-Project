@@ -4,10 +4,10 @@
     <div class="user-card">
            @include('partials.flash')
         <div class="card-header">
-            <h2 class="btn card-title">Create <span>| <a href="#">Home</a></span></h2>
+            <h2 class="btn card-title">Create <span>| <a href="{{URL('admin/user/')}}">Home</a></span></h2>
            <!-- Header -->
             <div class="controls-group">
-                <a href="{{URL::previous()}}" class="control-btn btn-primary" onclick="handleClick('Add New Product')">
+                <a href="{{URL('admin/user/')}}" class="control-btn btn-primary" onclick="handleClick('Add New Product')">
                 - Back
                 </a>
             </div>

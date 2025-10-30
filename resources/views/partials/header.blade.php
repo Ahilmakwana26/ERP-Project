@@ -18,8 +18,8 @@
         <div class="profile-section">
             <img src="/images/user.jpg" alt="Jane Cooper" class="profile-img">
             <div class="profile-text">
-                <p class="btn name">Jane Cooper</p>
-                <p class="email">jane234@example.com</p>
+                <p class="btn name">{{Auth::user()->name}}</p>
+                <p class="email">{{Auth::user()->email}}</p>
             </div>
         </div>
     </div>

@@ -50,4 +50,19 @@ class UserController extends Controller
     session()->flash('message',$user['message']);
     
   }
+
+  public function demo(){
+    $arr=array();
+    
+    $arr=['ahil','sahil','new','abc'];
+   // array_push($arr,'newadd'); first method to add
+   //$arr[]=['newarra']; second but make new array in exsting array
+    
+   //array_merge
+  $arr2=['1','2','3','4'];
+   $newarr=array_merge($arr,$arr2);
+  //  dd($newarr);
+
+  //array_filter
+  }
 }

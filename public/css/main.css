@@ -69,8 +69,9 @@ body {
 /* 2. Main Content Area */
 .main-content {
     flex-grow: 1;
-    margin-left: 300px; 
+    margin-left: 255px; 
     padding: 32px;
+    overflow-y:scroll ;
 }
 
 /* --- Sidebar Navigation --- */
@@ -144,7 +145,10 @@ body {
     color: #ef4444; 
     background-color: transparent;
 }
-
+.nav-item-logout a{
+    text-decoration: none;
+    color: #1f2937;
+}
 /* --- Header --- */
 .header-bar {
     position: sticky;
@@ -273,7 +277,10 @@ body {
     padding-bottom: 19px;
     font-size: 15px;
 }
-
+.card-header span a{
+    text-decoration: none;
+    color: #4b5563;
+}
 .card-title {
     font-size: 27px; 
     font-weight: 700; 
@@ -614,7 +621,7 @@ body {
     }
     .user-card{
         height: 650px;
-        overflow: scroll !important;
+        /* overflow: scroll !important; */
     }
     .header-bar {
         flex-direction: column;

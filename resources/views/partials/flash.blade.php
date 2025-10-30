@@ -1,5 +1,5 @@
 @if (session('message'))
-<div class="alert alert-success" style="background: rgba(0, 255, 0, 0.2)">
+<div class="alert alert-success">
     {{ session('message') }}
 </div>
 @endif
@@ -12,3 +12,11 @@
     </ul>
 </div>
 @endif
+<style>
+.alert{
+    background: rgba(0, 255, 0, 0.2);
+    border-radius: 6px;
+    padding: 3px 5px;
+    
+}
+</style>

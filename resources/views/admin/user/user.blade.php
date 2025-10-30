@@ -50,7 +50,7 @@
                                     <th>Role </th>
                                     <th>Mobile </th>
                                     <th>Status </th>
-                                    <th>Created_at </th>
+                                    <th>Authentication</th>
                                     <th>Action </th>
                                 </tr>
                             </thead>
@@ -77,8 +77,8 @@
                                     <td>
                                         <span class="badge badge-pending">{{$user->status}}</span>
                                     </td>
-                                    <td class="td-type">  @if($user->office_no)
-                                        {{$user->office_no}} @else N/A 
+                                    <td class="td-type">  @if($user->authorize_type)
+                                        {{$user->authorize_type}}
                                         @endif</td>
 
                                     <td class="td-action">
